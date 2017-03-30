@@ -1,1 +1,2 @@
-Sidebar inner
+<?php
+dynamic_sidebar('inner-widgets');
