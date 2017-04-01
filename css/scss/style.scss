@@ -1,0 +1,112 @@
+@import "components/vars";
+@import "components/mixins";
+
+.alignleft {
+    display: inline;
+    float: left;
+    margin-right: 10px;
+}
+.alignright {
+    display: inline;
+    float: right;
+    margin-left: 10px;
+}
+.aligncenter {
+    clear: both;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.list-group-item-heading .label {
+	font-size: 12px;
+	vertical-align: middle;
+	display: inline-block;
+	font-weight: normal;
+}
+
+.read-more {
+	display: inline-block;
+	margin-left: 7px;
+}
+
+.header-img {
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+	height: 100px;
+}
+
+#hero-section {
+	@include cover-bg(top center);
+	min-height: 200px;
+	table-layout: fixed;
+	display: table;
+	position: relative;
+	width: 100%;
+
+	@include tablet(){
+		min-height: 150px;
+	}
+
+	@include mobile(){
+		min-height: 100px;
+	}
+
+	.overlay {
+		position: absolute;
+		opacity: 0.8;
+		width: 100%;
+		height: 100%;
+	}
+
+	.addit {
+		display: table-cell;
+		vertical-align: middle;
+		width: 100%;
+	}
+
+	.hero-container {
+		padding-top: 30px;
+		padding-bottom: 30px;
+		text-align: center;
+		position: relative;
+		color: #fff;
+
+		h1 {
+			color: #fffcf4;
+
+			span {
+				text-transform: uppercase;
+				color: $brand-primary;
+				font-weight: 900;
+
+			}
+		}
+
+		p {
+			font-size: 18px;
+			font-weight: 300;
+			line-height: 36px;
+
+			@include mobile(){
+				line-height: normal;
+			}
+		}
+	}
+}
+
+/* calendar widget */
+.widget_calendar {float: left;}
+#wp-calendar {width: 100%; }
+#wp-calendar caption { text-align: right; color: #333; font-size: 12px; margin-top: 10px; margin-bottom: 15px; }
+#wp-calendar thead { font-size: 10px; }
+#wp-calendar thead th { padding-bottom: 10px; }
+#wp-calendar tbody { color: #aaa; }
+#wp-calendar tbody td { background: #f5f5f5; border: 1px solid #fff; text-align: center; padding: 5px;}
+#wp-calendar tbody td:hover { background: #fff; }
+#wp-calendar tbody .pad { background: none; }
+#wp-calendar tfoot #next { font-size: 10px; text-transform: uppercase; text-align: right; }
+#wp-calendar tfoot #prev { font-size: 10px; text-transform: uppercase; padding-top: 10px; }

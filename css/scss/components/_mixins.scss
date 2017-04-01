@@ -1,0 +1,73 @@
+@mixin cover-bg($pos) {
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-position: $pos;
+	background-repeat: no-repeat;
+}
+
+@mixin ico-bg($size, $pos) {
+	background-repeat: no-repeat;
+	background-size: $size;
+	background-position: $pos;
+}
+
+@mixin block() {
+	float: none;
+	display: block;
+	width: 100%;
+	clear: both;
+}
+
+@mixin clear-fix() {
+    &:before {
+		box-sizing: border-box;
+		display: table;
+		content: " ";
+	}
+
+	&:after {
+		box-sizing: border-box;
+		display: table;
+		content: " ";
+		clear: both;
+	}
+}
+
+//* Media queries
+@mixin desktop() {
+	@media (min-width: $desktop-min) {
+		@content;
+	}
+}
+
+@mixin tablet-ls() {
+	@media (max-width: $tablet-ls-max) {
+		@content;
+	}
+}
+
+@mixin tablet() {
+	@media (max-width: $tablet-max) {
+		@content;
+	}
+}
+
+@mixin iphone-ls() {
+	@media (max-width: $iphone-ls-max) {
+		@content;
+	}
+}
+
+@mixin iphone() {
+	@media (max-width: $iphone-max) {
+		@content;
+	}
+}
+
+@mixin mobile() {
+	@media (max-width: $mobile-max) {
+		@content;
+	}
+}

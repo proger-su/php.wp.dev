@@ -10,6 +10,9 @@
 
 	<body <?php body_class(); ?>>
 		<div class="container">
+			<div class="header-img" style="background-image: url(<?php header_image(); ?>); "></div>
+		</div>
+		<div class="container">
 			<nav id="header-nav" class="navbar navbar-default">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav-content">

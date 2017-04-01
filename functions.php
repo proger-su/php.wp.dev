@@ -1,6 +1,7 @@
 <?php
 require_once 'inc/bs-nav-menu-walker.php';
 require_once 'inc/bs-breadcrumbs.php';
+require_once 'inc/customizer.php';
 
 //Добавляем поддержку меню
 add_theme_support('menus');
