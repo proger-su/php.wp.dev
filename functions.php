@@ -3,6 +3,8 @@ require_once 'inc/bs-nav-menu-walker.php';
 require_once 'inc/bs-breadcrumbs.php';
 require_once 'inc/customizer.php';
 
+require_once 'shop/shop.php';
+
 //Добавляем поддержку меню
 add_theme_support('menus');
 
