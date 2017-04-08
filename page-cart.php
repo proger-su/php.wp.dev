@@ -1,13 +1,33 @@
 <?php
 $is_submit = filter_input(INPUT_POST, 'product-by');
+$user = wp_get_current_user();
+$has_error = false;
 
-if($is_submit){
+if ($is_submit) {
 	$product_id = filter_input(INPUT_POST, 'product-id', FILTER_SANITIZE_NUMBER_INT);
 	$product_name = filter_input(INPUT_POST, 'product-name', FILTER_SANITIZE_STRING);
 	$order_comment = filter_input(INPUT_POST, 'order-comment', FILTER_SANITIZE_STRING);
+
+	if ($product_id && $product_name && $order_comment && $user->ID) {
+		$order_id = wp_insert_post(array(
+			'post_title' => $product_name,
+			'post_content' => $order_comment,
+			'post_status' => 'draft',
+			'post_type' => 'cart',
+			'post_author' => $user->ID
+		));
+
+		if ($order_id) {
+			$url = 'Location: ' . get_the_permalink($product_id) . '?purchased=1';
+			header($url);
+		} else {
+			$has_error = 'Не удалось завершить покупку. Свяжитесь с администратором.';
+		}
+		
+	} else {
+		$has_error = 'Введите корректные данные, или авторизируйтесь';
+	}
 }
-
-
 
 the_post();
 get_header();
@@ -17,7 +37,6 @@ get_header();
 		<div class="col-sm-8">
 			<h1><?php the_title(); ?></h1>
 			<?php
-			$user = wp_get_current_user();
 			$product = (int) filter_input(INPUT_GET, 'product-id', FILTER_SANITIZE_NUMBER_INT);
 			if ($product) {
 				$product = get_post($product);
@@ -47,6 +66,9 @@ get_header();
 						<div class="col-sm-6">
 							<input type="hidden" name="product-name" value="<?php echo $product->post_title; ?>">
 							<input type="hidden" name="product-id" value="<?php echo $product->ID; ?>">
+							<?php if ($has_error) { ?>
+								<p class="text-danger"><?php echo $has_error; ?></p>
+							<?php } ?>
 							<div class="form-group">
 								<label>Комментарий</label>
 								<textarea class="form-control" name="order-comment" rows="15"></textarea>
